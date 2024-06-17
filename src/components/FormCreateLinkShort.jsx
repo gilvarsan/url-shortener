@@ -28,7 +28,7 @@ const Form = () =>{
   const submit = async (e) => {
     e.preventDefault();
 
-    const response = await fetch("http://localhost:3001/api/shorten", {
+    const response = await fetch("http://localhost:3001/api/shortURL", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
@@ -40,8 +40,8 @@ const Form = () =>{
 
     setShowShortURL(true);
     setDataShortURL({
-      shortUrl: data.shortUrl,
-      description: data.description
+      shortUrl: data.body.fullShortUrl,
+      description: data.body.description
     });
 
     //restablece el estado del formulario a los valores iniciales, en este caso a vacio ''
