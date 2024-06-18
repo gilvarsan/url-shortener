@@ -1,12 +1,12 @@
-const express = require("express");
+import express from "express";
 const router = express.Router();
-const {
+import {
   listShortURLs,
   getShortURL,
   createShortURL,
   updateShortURL,
   deleteShortURL,
-} = require("../components/shortURL/controllerShortURL");
+} from "../components/shortURL/controllerShortURL.js";
 
 router.get("/", listShortURLs);
 
@@ -18,4 +18,4 @@ router.patch("/:id", updateShortURL);
 
 router.delete("/:id", deleteShortURL);
 
-module.exports = router;
+export default router;

@@ -1,5 +1,5 @@
-const serviceShortURL = require("./serviceShortURL");
-const handle = require("../../helpers/handleResponse");
+import serviceShortURL from "./serviceShortURL.js";
+import handle from "../../helpers/handleResponse.js";
 
 const listShortURLs = async (req, res) => {
   try {
@@ -28,7 +28,7 @@ const updateShortURL = () => {};
 
 const deleteShortURL = () => {};
 
-module.exports = {
+export {
   listShortURLs,
   getShortURL,
   createShortURL,

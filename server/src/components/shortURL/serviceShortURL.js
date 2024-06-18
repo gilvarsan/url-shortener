@@ -1,4 +1,4 @@
-const shortURL = require("./modelShortURL");
+import shortURL from "./modelShortURL.js";
 
 // Service for get all url
 const listShortURLs = async () => {
@@ -72,7 +72,7 @@ const deleteShortURL = async (userId) => {
   }
 };
 
-module.exports = {
+export default {
   listShortURLs,
   getShortURL,
   createShortURL,

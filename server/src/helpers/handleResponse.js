@@ -42,4 +42,4 @@ const error = function (req, res, message, status) {
   });
 };
 
-module.exports = { messages, messageValidator, success, error };
+export default { messages, messageValidator, success, error };

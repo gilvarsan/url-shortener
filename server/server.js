@@ -1,12 +1,10 @@
-const express = require("express");
+import express from "express";
+import cors from "cors";
+import { PORT } from "./config/global.js";
+import { connectDB } from "./config/database.js";
+import router from "./src/routes/index.js"; // Importa el enrutador
+
 const app = express();
-const cors = require("cors");
-
-const router = require("./src/routes"); // Importa el enrutador
-const connectDB = require("./config/database");
-
-const PORT = process.env.PORT || 3001;
-
 app.use(express.json()); // Middleware para analizar datos JSON en las solicitudes
 app.use(cors());
 
