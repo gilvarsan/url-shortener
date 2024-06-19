@@ -6,7 +6,7 @@ const listShortURLs = async (req, res) => {
     const resp = await serviceShortURL.listShortURLs();
     handle.success(req, res, resp, 200);
   } catch (error) {
-    handle.error(req, res, e, 500);
+    handle.error(req, res, error, 500);
   }
 };
 
@@ -20,7 +20,7 @@ const createShortURL = async (req, res) => {
     console.log("createShortURL", resp);
     handle.success(req, res, resp, 200);
   } catch (error) {
-    handle.error(req, res, e, 500);
+    handle.error(req, res, error, 500);
   }
 };
 

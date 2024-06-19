@@ -1,33 +1,49 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-
 import ShortURL from "@/components/ShortURL.astro";
+import Button from "@/components/Button.jsx";
+
+const res = await fetch("http://localhost:3001/api/shortURL", {
+  method: "GET",
+  headers: {
+    "content-type": "application/json",
+  },
+});
+const data = await res.json();
+const links = data["body"];
+
+//const baseURL = Astro.request.headers.get("referer");
+const baseURL = "/";
 ---
 
-<Layout title="URL Shortener">
+<Layout title="URL ShortQuick">
   <main class="mb-14">
-    <h2 class="text-3xl text-white font-bold text-center">
+    <p class="text-5xl text-white font-bold text-center p-10">
       Enhance Your Link Management
-    </h2>
+    </p>
+    <p class="text-xl text-white text-center max-w-2xl mx-auto">
+      ShortQuick is a powerful tool for creating, managing, and sharing
+      shortened links effortlessly. It's fast, secure, and simple to use.
+    </p>
 
-    <div class="flex justify-center mt-10">
-      <button
-        type="button"
-        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-        >temporarily create</button
-      >
-    </div>
+    <Button value="temporarily create" />
 
     <br />
-    <div class="max-w-2xl mx-auto flex items-center justify-between mb-4">
+    <div class="max-w-2xl mx-auto flex justify-center mb-4">
       <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">
         Short URL List
       </h5>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 px-3">
-      <ShortURL />
-      <ShortURL />
-      <ShortURL />
+      {
+        links.map((link) => (
+          <ShortURL
+            url={link.url}
+            short={baseURL + link.short}
+            description={link.description}
+          />
+        ))
+      }
     </div>
   </main>
 </Layout>
