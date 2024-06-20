@@ -11,6 +11,11 @@ export default defineConfig({
     Google({
       clientId: import.meta.env.GOOGLE_CLIENT_ID,
       clientSecret: import.meta.env.GOOGLE_CLIENT_SECRET,
+      authorization: {
+        params: {
+          prompt: "select_account", // Esto asegura que siempre se pregunte por la cuenta
+        },
+      },
     }),
   ],
 });

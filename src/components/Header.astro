@@ -25,6 +25,11 @@ const session = await getSession(Astro.request);
         {
           session ? (
             <div class="flex items-center space-x-2">
+              <img
+                class="w-12 h-12 mb-3 me-3 rounded-full sm:mb-0"
+                src={session.user?.image}
+                alt="Bonnie Green image"
+              />
               <p class="text-xl text-white text-center max-w-2xl mx-auto ml-2">
                 Welcome {session.user?.name.split(" ")[0]}
               </p>
