@@ -18,4 +18,34 @@ export default defineConfig({
       },
     }),
   ],
+  callbacks: {
+    async signIn({ user, account, profile }) {
+      try {
+        const res = await fetch(
+          `http://localhost:3001/api/user/${user.email}`,
+          {
+            method: "GET",
+            headers: {
+              "content-type": "application/json",
+            },
+          }
+        );
+        const data = await res.json();
+        if (!data.error && typeof data.body !== "object") {
+          const dataUser = {
+            name: user.name,
+            email: user.email,
+          };
+          const res = await fetch(`http://localhost:3001/api/user/`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(dataUser),
+          });
+          const resp = await res.json();
+        }
+        return true;
+        //const links = data["body"];
+      } catch (error) {}
+    },
+  },
 });

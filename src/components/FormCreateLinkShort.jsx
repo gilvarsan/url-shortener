@@ -2,17 +2,18 @@ import Button from "@/components/Button.jsx";
 import TemporaryShortURL from "@/components/TemporaryShortURL.jsx";
 import React, { useState } from 'react';
 
-const Form = () =>{
+const Form = ({email}) =>{
   const [formData, setFormData] = useState({
     longUrl: '',
-    description: ''
+    description: '',
+    email: email,
   });
 
   const [showShortURL, setShowShortURL] = useState(false);
 
   const [dataShortURL, setDataShortURL] = useState({
     shortUrl: '',
-    description: '',
+    description: ''
   })
 
   
@@ -35,8 +36,6 @@ const Form = () =>{
     });
 
     const data = await response.json();
-    console.log('datos URL', data);
-    //document.getElementById("result").textContent = `Short URL: ${data.shortUrl}`;
 
     setShowShortURL(true);
     setDataShortURL({
@@ -47,7 +46,8 @@ const Form = () =>{
     //restablece el estado del formulario a los valores iniciales, en este caso a vacio ''
     setFormData({
       longUrl: '',
-      description: ''
+      description: '',
+      email: email
     });
   }
 

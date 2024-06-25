@@ -1,4 +1,5 @@
 import shortURL from "./modelShortURL.js";
+import serviceUser from "../user/serviceUser.js";
 
 // Service for get all url
 const listShortURLs = async () => {
@@ -25,8 +26,10 @@ const getShortURL = async (userId) => {
 
 // Service for create a new short URL
 const createShortURL = async (req) => {
-  const { longUrl, description } = req.body;
+  const { longUrl, description, email } = req.body;
   try {
+    const userBD = email ? await serviceUser.getUserByEmail(email) : null;
+
     const referer = req.get("Referer") || req.get("Origin");
     const baseURL = referer ? new URL(referer).origin : null;
 
@@ -35,8 +38,9 @@ const createShortURL = async (req) => {
       url: longUrl,
       short: shortUrl,
       description,
+      ...(userBD?._id && { user: userBD._id }),
     };
-    //console.log("data", data);
+
     const url = new shortURL(data);
     await url.save();
     const fullShortUrl = baseURL + "/" + shortUrl;

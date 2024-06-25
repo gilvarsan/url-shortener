@@ -27,9 +27,13 @@ const shortURLScheme = new Schema(
     ],
     user: {
       type: Schema.Types.ObjectId,
-      ref: "user",
+      ref: "users",
       required: false,
       index: true,
+    },
+    isActive: {
+      type: Boolean,
+      default: true,
     },
   },
   {
