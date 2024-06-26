@@ -4,10 +4,8 @@ import user from "./modelUser.js";
 const getUser = async (userId) => {
   try {
     const userBD = await user.findOne({ id: userId });
-    if (!userBD) {
-      //throw new Error("User not found");
-      return "User not found";
-    }
+    if (!userBD) return null;
+
     return userBD;
   } catch (error) {
     throw new Error("Error getting user " + error);
@@ -18,10 +16,8 @@ const getUser = async (userId) => {
 const getUserByEmail = async (email) => {
   try {
     const userBD = await user.findOne({ email: email });
-    if (!userBD) {
-      //throw new Error("User not found");
-      return "User not found";
-    }
+    if (!userBD) return null;
+
     return userBD;
   } catch (error) {
     throw new Error("Error getting user " + error);

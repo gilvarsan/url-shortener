@@ -2,9 +2,12 @@ import shortURL from "./modelShortURL.js";
 import serviceUser from "../user/serviceUser.js";
 
 // Service for get all url
-const listShortURLs = async () => {
+const listShortURLs = async (email) => {
   try {
-    const urls = await shortURL.find();
+    const userBD = email ? await serviceUser.getUserByEmail(email) : null;
+    if (!userBD) return null;
+
+    const urls = await shortURL.find({ user: userBD._id });
     return urls;
   } catch (error) {
     throw new Error("Error getting urls");

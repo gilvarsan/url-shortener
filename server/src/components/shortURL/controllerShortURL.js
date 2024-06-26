@@ -3,7 +3,8 @@ import handle from "../../helpers/handleResponse.js";
 
 const listShortURLs = async (req, res) => {
   try {
-    const resp = await serviceShortURL.listShortURLs();
+    const email = req.params.email;
+    const resp = await serviceShortURL.listShortURLs(email);
     handle.success(req, res, resp, 200);
   } catch (error) {
     handle.error(req, res, error, 500);

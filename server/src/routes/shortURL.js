@@ -8,7 +8,7 @@ import {
   deleteShortURL,
 } from "../components/shortURL/controllerShortURL.js";
 
-router.get("/", listShortURLs);
+router.get("/:email", listShortURLs);
 
 router.get("/:id", getShortURL);
 
