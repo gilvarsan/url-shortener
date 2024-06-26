@@ -54,8 +54,8 @@ const Form = ({email}) =>{
   return(
     <>
       <form onSubmit={submit} className="max-w-lg mx-auto">
-        <h2 className="text-3xl text-white font-bold text-center mb-5">
-          Create new test Link
+        <h2 className="text-3xl text-white font-bold text-center p-10">
+          Create new Link
         </h2>
         <div className="mb-5">
           <label htmlFor="longUrl" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -68,7 +68,7 @@ const Form = ({email}) =>{
             required
           />
         </div>
-        <div className="mb-5">
+        <div className="mb-10">
           <label htmlFor="description" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
             Description (optional)
           </label>
@@ -78,7 +78,7 @@ const Form = ({email}) =>{
             onChange={handleChange}
           />
         </div>
-        <Button value="create new URL" />
+        <Button value="Create new URL" />
       </form>
       {(showShortURL && <TemporaryShortURL shortUrl={dataShortURL.shortUrl} description={dataShortURL.description}/>)}
     </>

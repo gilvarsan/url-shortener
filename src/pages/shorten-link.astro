@@ -5,7 +5,7 @@ import { getSession } from "auth-astro/server";
 const session = await getSession(Astro.request);
 ---
 
-<Layout title="Create Link">
+<Layout title="Shorten Link">
   <section>
     <FormCreateLinkShort client:load email={session?.user.email} />
   </section>
